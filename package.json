@@ -1,17 +1,23 @@
 {
-   "name": "angry-discord-bot",
-   "version": "0.0.1",
-   "description": "Our bot is an idiot",
-   "dependencies": {
-      "discord.js": "^14.12.1",
-      "dotenv": "^16.3.1"
-   },
-   "scripts": {
-      "start": "node app.js",
-      "dev": "nodemon app.js"
-   },
-   "devDependencies": {
-      "nodemon": "^3.0.1",
-      "prettier": "3.0.1"
-   }
+  "name": "angry-discord-bot",
+  "version": "0.0.1",
+  "description": "Our bot is an idiot",
+  "repository": "git@github.com:d-ivanitskiy/angry-discord-bot.git",
+  "dependencies": {
+    "discord.js": "^14.12.1",
+    "dotenv": "^16.3.1"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "precommit": "pretty-quick --staged",
+    "prepare": "husky install .husky"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.3",
+    "nodemon": "^3.0.1",
+    "prettier": "^2.8.0",
+    "pretty-quick": "^3.1.3"
+  }
 }

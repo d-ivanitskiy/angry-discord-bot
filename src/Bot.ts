@@ -1,10 +1,25 @@
 import dotenv from "dotenv";
-import Discord, { GatewayIntentBits } from "discord.js";
+import Discord, { GatewayIntentBits, Partials } from "discord.js";
 
 dotenv.config();
 
 const client = new Discord.Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+  intents: [
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildBans,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
+  partials: [Partials.Channel],
+});
+
+client.on('messageCreate', (message) => {
+  if (message.author.bot) {
+    return
+  } else {
+    console.log(message.content)
+  }
 });
 
 client

@@ -1,6 +1,7 @@
-require("dotenv").config();
-const Discord = require("discord.js");
-const { GatewayIntentBits } = require("discord.js");
+import dotenv from "dotenv";
+import Discord, { GatewayIntentBits } from "discord.js";
+
+dotenv.config();
 
 const client = new Discord.Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],

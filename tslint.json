@@ -1,0 +1,48 @@
+{
+  "extends": ["tslint-config-airbnb", "tslint:recommended"],
+  "linterOptions": {
+    "exclude": [
+      "src/models/**"
+    ]
+  },
+  "jsRules": {},
+  "rules": {
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double",
+      "avoid-escape",
+      "avoid-template"
+    ],
+    "trailing-comma": [true, {
+      "singleline": "never",
+      "multiline": {
+        "objects": "always",
+        "arrays": "always",
+        "functions": "ignore",
+        "typeLiterals": "ignore"
+      }
+    }],
+    "max-line-length": [true, 150],
+    "ordered-imports": false,
+    "prefer-for-of": false,
+    "object-shorthand-properties-first": false,
+    "member-ordering": [
+      true,
+      {
+        "order": "fields-first"
+      }
+    ],
+    "variable-name": false,
+    "arrow-parens": false,
+    "interface-name": false,
+    "no-reference-import": false,
+    "interface-over-type-literal": false,
+    "object-literal-sort-keys": false,
+    "import-name": false,
+    "no-unused-variable": true,
+    "curly": [true, "ignore-same-line"],
+    "no-var-requires": false,
+    "prefer-array-literal": [true, { "allow-type-parameters": true }]
+  }
+}

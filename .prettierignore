@@ -1,0 +1,10 @@
+*.*
+!*.js
+!*.jsx
+!*.ts
+!*.tsx
+!*.scss
+!*.json
+
+/build
+/node_modules

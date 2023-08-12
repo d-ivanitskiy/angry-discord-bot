@@ -3,7 +3,7 @@ import Discord, { GatewayIntentBits, Partials } from "discord.js";
 
 dotenv.config();
 
-const client = new Discord.Client({
+const bot = new Discord.Client({
   intents: [
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.Guilds,
@@ -14,15 +14,15 @@ const client = new Discord.Client({
   partials: [Partials.Channel],
 });
 
-client.on('messageCreate', (message) => {
+bot.on("messageCreate", (message) => {
   if (message.author.bot) {
-    return
+    return;
   } else {
-    console.log(message.content)
+    console.log(message.content);
   }
 });
 
-client
+bot
   .login(process.env.BOT_TOKEN || "")
   .then(() => console.log("bot is alive"))
   .catch(console.error);

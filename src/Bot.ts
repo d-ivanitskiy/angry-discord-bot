@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
-import Discord, {GatewayIntentBits, Partials} from "discord.js";
+import Discord, { GatewayIntentBits, Partials } from "discord.js";
+
+import { changeNickname } from "./ulils/schedules";
 
 dotenv.config();
 
@@ -41,13 +43,28 @@ bot.on("messageCreate", (message) => {
   if (message.author.bot) {
     return;
   } else {
-    console.log(message.content);
+    let channel = message.member.voice.channel
+    // console.log(message.content);
+    console.log(channel)
+    // sound.play(channel, 'niconiconii')
   }
 });
 
 bot.on('typingStart', (typing) => {
   console.log(typing);
 })
+
+bot.on('ready', async function() {
+  const guild = await bot.guilds.fetch(process.env.GUILD_ID || "");
+  const members = await guild.members.fetch();
+  const dataAsObject = Object.fromEntries(members);
+  const usersData = Object.keys(dataAsObject).map((el: any) => dataAsObject[el])
+
+  if (process.env.DEN_TESTER_ID && process.env.NIKITOS_ID) {
+    changeNickname(usersData, false, [process.env.DEN_TESTER_ID, process.env.NIKITOS_ID]);
+  }
+
+});
 
 bot
   .login(process.env.BOT_TOKEN || "")

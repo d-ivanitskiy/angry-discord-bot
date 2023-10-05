@@ -4,8 +4,11 @@
   "description": "Our bot is an idiot",
   "repository": "git@github.com:d-ivanitskiy/angry-discord-bot.git",
   "dependencies": {
+    "@discordjs/voice": "^0.16.0",
     "discord.js": "^14.12.1",
     "dotenv": "^16.3.1",
+    "ffmpeg-static": "^5.2.0",
+    "libsodium-wrappers": "^0.7.13",
     "node-cron": "^3.0.2",
     "ts-node": "^10.9.1"
   },

@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import Discord, { GatewayIntentBits, Partials } from "discord.js";
 
 import { changeNickname } from "./ulils/schedules";
+import { playSound } from "./ulils/helpers";
 
 dotenv.config();
 
@@ -39,22 +40,10 @@ const bot = new Discord.Client({
   ],
 });
 
-bot.on("messageCreate", (message) => {
-  if (message.author.bot) {
-    return;
-  } else {
-    let channel = message.member.voice.channel
-    // console.log(message.content);
-    console.log(channel)
-    // sound.play(channel, 'niconiconii')
-  }
-});
-
-bot.on('typingStart', (typing) => {
-  console.log(typing);
-})
-
-bot.on('ready', async function() {
+bot.on('ready', async (client) => {
+  // let channels = Object.fromEntries(client?.guilds?.cache?.get(process.env.GUILD_ID));
+  // const kek = channels.map((channel: { id: any; name: any; }) => channel.id && channel.name)
+  // console.log(channels)
   const guild = await bot.guilds.fetch(process.env.GUILD_ID || "");
   const members = await guild.members.fetch();
   const dataAsObject = Object.fromEntries(members);
@@ -63,10 +52,30 @@ bot.on('ready', async function() {
   if (process.env.DEN_TESTER_ID && process.env.NIKITOS_ID) {
     changeNickname(usersData, false, [process.env.DEN_TESTER_ID, process.env.NIKITOS_ID]);
   }
-
 });
 
-bot
-  .login(process.env.BOT_TOKEN || "")
-  .then(() => console.log("bot is alive"))
-  .catch(console.error);
+bot.on("messageCreate", async (message) => {
+  if (message.author.bot) {
+    return;
+  } else {
+    let channel = message.member.voice.channel;
+    await playSound(channel, "bruh");
+  }
+});
+
+bot.on('voiceStateUpdate', async (oldState, newState) => {
+  const channel = oldState?.member?.voice?.channel || newState?.member?.voice?.channel;
+  await playSound(channel, "fuck-you");
+});
+
+bot.on('typingStart', (typing) => {
+  // console.log(typing);
+})
+
+if (process.env.BOT_TOKEN) {
+  bot
+    .login(process.env.BOT_TOKEN)
+    .then(() => console.log("bot is alive"))
+    .catch(console.error);
+}
+
